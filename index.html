@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+
+    <h1 class="title">card database</h1>
+    
+    <div class="carddetails">
+      <div class="cardnamedetails">
+        <label for="cardname">card name</label>
+        <input class="nameinput" type="text" id="cardname" />
+      </div>
+
+      <div class="cardcosts">
+        <div class="convertedcost">
+          <label for="CMC">converted mana cost</label>
+          <input class="valueinput" type="number" id="CMC" />
+        </div>
+
+        <div class="manaweight">
+          real mana cost:
+
+          <div class="colourinputs">
+            <label for="colourless">C</label>
+            <input class="valueinput" type="number" id="colourless" />
+
+            <label for="white">W</label>
+            <input class="valueinput" type="number" id="white" />
+
+            <label for="blue">U</label>
+            <input class="valueinput" type="number" id="blue" />
+
+            <label for="black">B</label>
+            <input class="valueinput" type="number" id="black" />
+
+            <label for="red">R</label>
+            <input class="valueinput" type="number" id="red" />
+
+            <label for="green">G</label>
+            <input class="valueinput" type="number" id="green" />
+
+            <label for="generic">O</label>
+            <input class="valueinput" type="number" id="generic" />
+          </div>
+        </div>
+      </div>
+
+      <div class="cardtypes">
+        <label for="supertype">super type</label>
+        <input class="typeinput" type="text" id="supertype" list="supertypedatalist" />
+        <datalist id="supertypedatalist"></datalist>
+
+        <label for="cardtype">card type</label>
+        <input class="typeinput" type="text" id="cardtype" list="typedatalist" />
+        <datalist id="typedatalist"></datalist>
+
+        <label for="subtype">sub type</label>
+        <input class="typeinput" type="text" id="subtype" list="subtypedatalist" />
+        <datalist id="subtypedatalist"></datalist>
+      </div>
+
+      <div class="powerandtoughness">
+        <label for="power">power</label>
+        <input class="valueinput" type="number" id="power" />
+        <span>/</span>
+
+        <span>/</span>
+        <label for="toughness">toughness</label>
+        <input class="valueinput" type ="number" id="toughness" />
+      </div> 
+
+      <div class="ratingcontainer">
+        <label for="cardrating">rating</label>
+        <span id="star1" class="ratingbase rating"></span>
+        <span id="star2" class="ratingbase rating"></span>
+        <span id="star3" class="ratingbase rating"></span>
+        <span id="star4" class="ratingbase rating"></span>
+        <span id="star5" class="ratingbase rating"></span>
+      </div>
+
+      <div class="effectivenessgrid">
+        <label for="effectivenessrating">effectiveness</label>
+          <div id="effectivenesscontainer" class="effectivenesscontainer">
+            <span id="effectiveness1" class="effectivenessbase effectiveness"></span>
+            <span id="effectiveness2" class="effectivenessbase effectiveness"></span>
+            <span id="effectiveness3" class="effectivenessbase effectiveness"></span>
+            <span id="effectiveness4" class="effectivenessbase effectiveness"></span>
+            <span id="effectiveness5" class="effectivenessbase effectiveness"></span>
+            <span id="effectiveness6" class="effectivenessbase effectiveness"></span>
+            <span id="effectiveness7" class="effectivenessbase effectiveness"></span>
+            <span id="effectiveness8" class="effectivenessbase effectiveness"></span>
+            <span id="effectiveness9" class="effectivenessbase effectiveness"></span>
+            <span id="effectiveness10" class="effectivenessbase effectiveness"></span>
+          </div>
+      </div>
+
+      <div class="cardtags">
+        <div id="tagcatalog" class="tagcatalog">
+        </div>
+      </div>
+        
+        <div id="tagappending" class="tagappending">
+            <input list="tagdatalist" id="taginput" class="taginput" />
+            <datalist id="tagdatalist">
+              <option>flying</option>
+              <option>first strike</option>
+              <option>trample</option>
+              <option>deathtouch</option>
+              <option>lifelink</option>
+              <option>vigilance</option>
+              <option>double strike</option>
+              <option>reach</option>
+            </datalist>
+            <button id="addbutton" class="addbutton">add</button>
+        </div>
+
+        <div id="tagtemplate" class="tagitem nonvisible">
+          <div class="tagname">hello</div>
+          <img src="images/times-circle.svg" class="tagitemcross" />
+        </div>
+      
+      <div class="costinput">
+        <div class="costboard" id="costboard">
+          <label for="costboard">mana tags:</label>
+        </div>
+
+        <div id="manatagboard" class="manatagboard">
+          <label for="manatagboard">mana cost:</label>
+        </div>
+
+        <div id="manatagtemplate" class="manasymbol nonvisible">
+          <div class="manatag"></div>
+        </div>
+      </div>
+    </div>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
+

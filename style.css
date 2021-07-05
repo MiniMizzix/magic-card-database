@@ -1,0 +1,170 @@
+html {
+  font-size: 16px;
+}
+
+input {
+  height: 15px;
+}
+
+.nameinput {
+  width: 10em; 
+  margin: 0px 0px 0px 10px;
+}
+
+.valueinput {
+  width: 2em;
+}
+
+.cardnamedetails {
+  margin: 0em 0em 1em 0em;
+}
+
+.convertedcost {
+  margin: 0em 0em 1em 0em;
+}
+
+.colourinputs {
+  margin: 1em 0em 0em 0em;
+  display: grid;
+  grid-template-columns: 3em 3em;
+  grid-template-rows: repeat(7, 2em);
+}
+
+.cardtypes {
+  margin: 1em 0em 0em 0em;
+  display: grid;
+  grid-template-columns: 6em 6em 6em;
+  grid-template-rows: 2em 2em;
+  grid-auto-flow: column;
+}
+
+.typeinput {
+  width: 5em;
+}
+
+.powerandtoughness {
+  margin: 1em 0em 0em 0em;
+  display: grid;
+  grid-template-columns: 45px 10px 53px;
+  grid-template-rows: 2em 2em;
+  grid-auto-flow: column;
+}
+
+.redbox {
+  border: solid 2pt red;
+}
+
+.ratingcontainer {
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: 3em repeat(5,2em);
+}
+
+.rating {
+  background-image: url("images/emptystar.svg");
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  position: relative;
+  top: -2px;
+}
+
+.ratingfull {
+  background-image: url("images/fullstar.svg");
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  position: relative;
+  top: -2px;
+}
+
+.effectivenesscontainer {
+  width: 280px;
+  display: grid;
+  grid-template-columns: repeat(10, 28px);
+}
+
+.effectivenessgrid {
+  margin-top: 1em;
+  padding-top: 5px;
+  display: grid;
+  grid-template-columns: 6em 300px;
+}
+
+.effectivenessbase {
+  background-repeat: no-repeat;
+  position: relative;
+  background-position: center;
+}
+
+.effectiveness {
+  background-image: url("images/emptystar.svg");
+  width: 24px;
+  height: 24px;
+}
+
+.effectivenessfull {
+  background-image: url("images/fullstar.svg");
+  width: 24px;
+  height: 24px;
+}
+
+.effectivenesshalf {
+  background-image: url("images/star-half-alt.svg");
+  width: 24px;
+  height: 24px;
+}
+
+.cardtags {
+  margin-top: 1rem;
+}
+
+.tagcatalog {
+  margin: 8px;
+  padding: 16px;
+  border: inset 2px lightgray;
+  display: block;
+  width:75%;
+}
+
+.tagitemcross {
+  width:16px;
+  height:16px;
+}
+
+.tagitem {
+  margin: 4px;
+  padding:4px;
+  border: outset 2px gray;
+  display: inline-block;
+}
+
+.nonvisible {
+  visibility: hidden;
+}
+
+.manasymbol {
+  margin: 4px;
+  padding:4px;
+  border: outset 2px gray;
+  display: inline-block;
+  width: 4em;
+}
+
+.costinput {
+  display: grid;
+  grid-template-columns: 5em 5em;
+  grid-gap: 10em;
+}
+
+.manatagboard {
+  border: inset 2px lightgray;
+  padding: 10px;
+  width: 5em;
+}
+
+.costboard {
+  border: inset 2px lightgray;
+  padding: 10px;
+  width: 5em;
+}

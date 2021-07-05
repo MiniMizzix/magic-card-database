@@ -1,0 +1,5 @@
+{
+  "supertype": ["legendary","snow","artifact","tribal","enchantment","basic","world"],
+  "type":["artifact","creature","enchantment","land","instant","scorcery","planeswalker"],
+  "subtype":["shrine","vehicle","aura","saga","clue","equipment","food","gold","treasure","cartouche","curse","rune","shard","plains","island","swamp","mountain","forest","wastes","desert","adventure","arcane","lesson","trap","dragon","wizard","bird"]
+}

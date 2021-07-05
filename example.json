@@ -1,0 +1,26 @@
+{
+  "cardname": "shivan dragon",
+  "CMC": "6",
+  "colour": "red",
+  "supertype": null,
+  "type": "creature",
+  "subtype": "dragon",
+  "power": 5,
+  "toughness": 5,
+  "rarity": "rare",
+  "originalset": "alpha",
+  "tags": [
+    "flying, firebreathing"
+  ],
+  "image": "http://www.artofmtg.com/wp-content/uploads/2014/06/Shivan-Dragon-7th-Edition-Onward.jpg",
+  "manacost": [
+    {
+      "type": "red",
+      "qty": 2
+    },
+    {
+      "type": "generic",
+      "qty": 4
+    }
+  ]
+}
