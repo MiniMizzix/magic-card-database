@@ -149,6 +149,7 @@ input {
   border: outset 2px gray;
   display: inline-block;
   width: 4em;
+  cursor: pointer;
 }
 
 .costinput {

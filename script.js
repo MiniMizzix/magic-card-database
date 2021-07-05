@@ -251,6 +251,19 @@ Cardform = class {
 
     document.getElementById('generic').value = this.CardData.CardStats.generic
   }
+
+  ManaArray_CheckforItem() {
+
+  }
+
+  ManaArray_AddItem() {
+
+  }
+
+  ManaArray_IncrementItem () {
+
+  }
+
 }
 
 const myForm = new Cardform()
