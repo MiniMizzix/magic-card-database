@@ -67,9 +67,14 @@ Cardform = class {
     this.AddButtonAutoFill()
   }
 
-  onManaTag_click (theEvent, manaTag, counter) {
+//Triggered when user clicks on Mana Tag on the right
+//copies tag to left side
+  onManaTag_click (theEvent, manaTag) {
     const newTag = manaTag.cloneNode(true)
     const manaBoard = document.getElementById('costboard')
+    const manaDiv = newTag.getElementsByClassName('manatag')[0]
+    const manaName = manaDiv.textContent
+    this.ManaArray_IncrementQty(manaName) 
 
     manaBoard.appendChild(newTag)
     newTag.addEventListener('click', event => this.onManaTagRemove_click(event, newTag))
@@ -77,6 +82,9 @@ Cardform = class {
 
   onManaTagRemove_click (theEvent, manaTag) {
     const manaBoard = document.getElementById('costboard')
+    const manaDiv = manaTag.getElementsByClassName('manatag')[0]
+    const manaName = manaDiv.textContent
+    this.ManaArray_DecrementQty(manaName)
 
     manaBoard.removeChild(manaTag)
   }
@@ -206,11 +214,11 @@ Cardform = class {
     const colourCount = this.CardData.ColourList.colours.length
     const manaTagsNode = document.getElementById('manatagboard')
     const manaTags = manaTagsNode.getElementsByClassName('manasymbol')
-    
+
     for (var counter = 0; counter < colourCount; counter++) {
       const currentTag = manaTags[counter]
       
-      manaTags[counter].addEventListener('click', event => this.onManaTag_click(event, currentTag, counter))
+      manaTags[counter].addEventListener('click', event => this.onManaTag_click(event, currentTag))
     }
   }
 
@@ -224,11 +232,10 @@ Cardform = class {
       const newMana = manaTemplate.cloneNode(true)
       
       newMana.classList.remove('nonvisible')
-      newMana.setAttribute('id', 'tag' + colourList[counter])
 
       const tagText = newMana.getElementsByClassName('manatag')
       tagText[0].textContent = colourList[counter]
-
+      
       manaList.appendChild(newMana, manaList.childNodes[0])
     }
   }
@@ -252,16 +259,34 @@ Cardform = class {
     document.getElementById('generic').value = this.CardData.CardStats.generic
   }
 
-  ManaArray_CheckforItem() {
+  ManaArray_IncrementQty (manaTag) {
+    const manaList = this.CardData.CardStats.manacost
+    const manaListCount = manaList.length
+    console.log(manaTag)
 
+    for (var counter = 0; counter < manaListCount; counter++) {
+      const currentMana = manaList[counter]
+      
+      if (currentMana.type == manaTag) {
+        currentMana.qty = currentMana.qty + 1
+        console.log(currentMana.qty)
+      }
+    }
   }
 
-  ManaArray_AddItem() {
+  ManaArray_DecrementQty (manaTag) {
+    const manaList = this.CardData.CardStats.manacost
+    const manaListCount = manaList.length
+    console.log(manaTag)
 
-  }
-
-  ManaArray_IncrementItem () {
-
+    for (var counter = 0; counter < manaListCount; counter++) {
+      const currentMana = manaList[counter]
+      
+      if (currentMana.type == manaTag) {
+        currentMana.qty = currentMana.qty - 1
+        console.log(currentMana.qty)
+      }
+    }
   }
 
 }
