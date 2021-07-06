@@ -36,7 +36,7 @@ CardDatabase = class {
     },
     {
     "type": "red",
-    "qty": 0
+    "qty": 2
     },
     {
     "type": "green",
@@ -44,7 +44,7 @@ CardDatabase = class {
     },
     {
     "type": "generic",
-    "qty": 0
+    "qty": 4
     }
   ],
   "rating": 3

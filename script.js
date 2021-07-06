@@ -1,8 +1,9 @@
 Cardform = class {
 
-  constructor () {
-    this.CardData = new CardDatabase()
+  constructor() {
 
+    
+    
     document.getElementById('CMC').addEventListener('focusout', event => this.onFocusOut(event))
 
     const allElements = document.getElementsByTagName('input')
@@ -23,6 +24,7 @@ Cardform = class {
 
     console.log(this.TagSort)
 
+    this.ManaTagsAutoFill()
     this.FormFill()
     this.Typelistfill()
     this.SuperTypelistfill()
@@ -30,30 +32,30 @@ Cardform = class {
     this.ManaTagFill()
     this.RatingFill(this.CardData.CardStats.rating)
     this.AddButtonAutoFill()
-    
+
     this.EffectivenessConsoleListener()
     this.AddClickEvent()
     this.ManaSwapListener()
   }
-  
+
   onFocusOut(theEvent) {
     const currentinput = theEvent.target
     this.MakeRed(currentinput)
   }
 
   onStarClick(theEvent) {
-      const currentStarIndex = theEvent.target.id.substring(4)
-      this.RatingFill(parseInt(currentStarIndex))
-    }
-
-  onEffectivenessContainer_MouseMove(theEvent) {
-    
-    const movement = (theEvent.x - document.getElementById('effectivenesscontainer').offsetLeft)
-    
-    this.EffectivenessFill(Math.ceil(movement/28), movement%28)
+    const currentStarIndex = theEvent.target.id.substring(4)
+    this.RatingFill(parseInt(currentStarIndex))
   }
 
-  onAddButton_click (theEvent) {
+  onEffectivenessContainer_MouseMove(theEvent) {
+
+    const movement = (theEvent.x - document.getElementById('effectivenesscontainer').offsetLeft)
+
+    this.EffectivenessFill(Math.ceil(movement / 28), movement % 28)
+  }
+
+  onAddButton_click(theEvent) {
     const addTag = document.getElementById('taginput').value
     const tagCatalog = document.getElementById('tagcatalog')
     const tagList = tagCatalog.getElementsByClassName('tagitem')
@@ -67,20 +69,20 @@ Cardform = class {
     this.AddButtonAutoFill()
   }
 
-//Triggered when user clicks on Mana Tag on the right
-//copies tag to left side
-  onManaTag_click (theEvent, manaTag) {
+  //Triggered when user clicks on Mana Tag on the right
+  //copies tag to left side
+  onManaTag_click(theEvent, manaTag) {
     const newTag = manaTag.cloneNode(true)
     const manaBoard = document.getElementById('costboard')
     const manaDiv = newTag.getElementsByClassName('manatag')[0]
     const manaName = manaDiv.textContent
-    this.ManaArray_IncrementQty(manaName) 
+    this.ManaArray_IncrementQty(manaName)
 
     manaBoard.appendChild(newTag)
     newTag.addEventListener('click', event => this.onManaTagRemove_click(event, newTag))
   }
 
-  onManaTagRemove_click (theEvent, manaTag) {
+  onManaTagRemove_click(theEvent, manaTag) {
     const manaBoard = document.getElementById('costboard')
     const manaDiv = manaTag.getElementsByClassName('manatag')[0]
     const manaName = manaDiv.textContent
@@ -89,7 +91,7 @@ Cardform = class {
     manaBoard.removeChild(manaTag)
   }
 
-  AddButtonAutoFill () {
+  AddButtonAutoFill() {
     this.TagSort = this.CardData.TagList.tags.sort()
     const allTagsCount = this.TagSort.length
 
@@ -99,7 +101,7 @@ Cardform = class {
     }
   }
 
-  TheMiddleMan (textApplication) {
+  TheMiddleMan(textApplication) {
     const tagTemplate = document.getElementById('tagtemplate')
     const newTag = tagTemplate.cloneNode(true)
     const cardTagsNode = document.getElementById('tagcatalog')
@@ -113,26 +115,26 @@ Cardform = class {
     cardTagsNode.appendChild(newTag, cardTagsNode.childNodes[0])
   }
 
-  AddClickEvent () {
+  AddClickEvent() {
     const addTag = document.getElementById('taginput').value
     const addButton = document.getElementById('addbutton')
 
     addButton.addEventListener('click', event => this.onAddButton_click(event))
   }
 
-  
+
   MakeRed(theInput) {
     if (theInput.value === "") {
       theInput.classList.add('redbox')
-    } else{
+    } else {
       theInput.classList.remove('redbox')
     }
   }
 
-  Typelistfill () {
+  Typelistfill() {
     const allTypesCount = this.CardData.TypeList.type.length
     const currentDataList = document.getElementById('typedatalist')
-    
+
     for (var counter = 0; counter < allTypesCount; counter++) {
       const currentType = this.CardData.TypeList.type[counter]
       var newOption = document.createElement('option')
@@ -141,10 +143,10 @@ Cardform = class {
     }
   }
 
-  SuperTypelistfill () {
+  SuperTypelistfill() {
     const allSuperTypesCount = this.CardData.SuperTypeList.supertype.length
     const currentDataList = document.getElementById('supertypedatalist')
-    
+
     for (var counter = 0; counter < allSuperTypesCount; counter++) {
       const currentType = this.CardData.SuperTypeList.supertype[counter]
       var newOption = document.createElement('option')
@@ -153,10 +155,10 @@ Cardform = class {
     }
   }
 
-  SubTypelistfill () {
+  SubTypelistfill() {
     const allSubTypesCount = this.CardData.SubTypeList.subtype.length
     const currentDataList = document.getElementById('subtypedatalist')
-    
+
     for (var counter = 0; counter < allSubTypesCount; counter++) {
       const currentType = this.CardData.SubTypeList.subtype[counter]
       var newOption = document.createElement('option')
@@ -165,29 +167,29 @@ Cardform = class {
     }
   }
 
-  RatingFill (theCurrentStar) {
+  RatingFill(theCurrentStar) {
     for (var counter = 1; counter <= theCurrentStar; counter++) {
-      var currentStar = document.getElementById("star"+[counter])
+      var currentStar = document.getElementById("star" + [counter])
       currentStar.classList.remove('rating')
       currentStar.classList.add('ratingfull')
     }
-    for (var counter = theCurrentStar+1; counter <= 5; counter++) {
-        var currentStar = document.getElementById("star"+[counter])
-        currentStar.classList.remove('ratingfull')
-        currentStar.classList.add('rating')
+    for (var counter = theCurrentStar + 1; counter <= 5; counter++) {
+      var currentStar = document.getElementById("star" + [counter])
+      currentStar.classList.remove('ratingfull')
+      currentStar.classList.add('rating')
     }
   }
 
-  EffectivenessConsoleListener () {
+  EffectivenessConsoleListener() {
     document.getElementById('effectivenesscontainer').addEventListener('mousemove', event => this.onEffectivenessContainer_MouseMove(event));
   }
 
-  EffectivenessFill (theCurrentStar, theStarFraction) {
+  EffectivenessFill(theCurrentStar, theStarFraction) {
     if (theCurrentStar > 10) return
-    
+
 
     for (var counter = 1; counter <= theCurrentStar; counter++) {
-      var currentStar = document.getElementById("effectiveness"+[counter])
+      var currentStar = document.getElementById("effectiveness" + [counter])
       currentStar.classList.remove('effectiveness')
       if (counter == theCurrentStar) {
         if (theStarFraction <= 14) {
@@ -201,28 +203,28 @@ Cardform = class {
         currentStar.classList.add('effectivenessfull')
       }
     }
-    
-    for (var counter = theCurrentStar+1; counter <= 10; counter++) {
-        var currentStar = document.getElementById("effectiveness"+[counter])
-        currentStar.classList.remove('effectivenessfull')
-        currentStar.classList.remove('effectivenesshalf')
-        currentStar.classList.add('effectiveness')
+
+    for (var counter = theCurrentStar + 1; counter <= 10; counter++) {
+      var currentStar = document.getElementById("effectiveness" + [counter])
+      currentStar.classList.remove('effectivenessfull')
+      currentStar.classList.remove('effectivenesshalf')
+      currentStar.classList.add('effectiveness')
     }
   }
 
-  ManaSwapListener () {
+  ManaSwapListener() {
     const colourCount = this.CardData.ColourList.colours.length
     const manaTagsNode = document.getElementById('manatagboard')
     const manaTags = manaTagsNode.getElementsByClassName('manasymbol')
 
     for (var counter = 0; counter < colourCount; counter++) {
       const currentTag = manaTags[counter]
-      
+
       manaTags[counter].addEventListener('click', event => this.onManaTag_click(event, currentTag))
     }
   }
 
-  ManaTagFill () {
+  ManaTagFill() {
     const manaTemplate = document.getElementById('manatagtemplate')
     const manaList = document.getElementById('manatagboard')
     const colourList = this.CardData.ColourList.colours
@@ -230,28 +232,28 @@ Cardform = class {
 
     for (var counter = 0; counter < colourCount; counter++) {
       const newMana = manaTemplate.cloneNode(true)
-      
+
       newMana.classList.remove('nonvisible')
 
       const tagText = newMana.getElementsByClassName('manatag')
       tagText[0].textContent = colourList[counter]
-      
+
       manaList.appendChild(newMana, manaList.childNodes[0])
     }
   }
 
-  FormFill () {
+  FormFill() {
     document.getElementById('cardname').value = this.CardData.CardStats.cardname
 
     document.getElementById('power').value = this.CardData.CardStats.power
 
     document.getElementById('toughness').value = this.CardData.CardStats.toughness
-    
+
     document.getElementById('subtype').value = this.CardData.CardStats.subtype
-    
-    document.getElementById('cardtype').value = 
-    this.CardData.CardStats.type
-    
+
+    document.getElementById('cardtype').value =
+      this.CardData.CardStats.type
+
     document.getElementById('CMC').value = this.CardData.CardStats.CMC
 
     document.getElementById('red').value = this.CardData.CardStats.red
@@ -259,14 +261,14 @@ Cardform = class {
     document.getElementById('generic').value = this.CardData.CardStats.generic
   }
 
-  ManaArray_IncrementQty (manaTag) {
+  ManaArray_IncrementQty(manaTag) {
     const manaList = this.CardData.CardStats.manacost
     const manaListCount = manaList.length
     console.log(manaTag)
 
     for (var counter = 0; counter < manaListCount; counter++) {
       const currentMana = manaList[counter]
-      
+
       if (currentMana.type == manaTag) {
         currentMana.qty = currentMana.qty + 1
         console.log(currentMana.qty)
@@ -274,14 +276,14 @@ Cardform = class {
     }
   }
 
-  ManaArray_DecrementQty (manaTag) {
+  ManaArray_DecrementQty(manaTag) {
     const manaList = this.CardData.CardStats.manacost
     const manaListCount = manaList.length
     console.log(manaTag)
 
     for (var counter = 0; counter < manaListCount; counter++) {
       const currentMana = manaList[counter]
-      
+
       if (currentMana.type == manaTag) {
         currentMana.qty = currentMana.qty - 1
         console.log(currentMana.qty)
@@ -289,6 +291,27 @@ Cardform = class {
     }
   }
 
+  ManaTagsAutoFill() {
+    const manaTemplate = document.getElementById('manatagtemplate')
+    const manaList = this.CardData.CardStats.manacost
+    const manaListCount = manaList.length
+    const costBoard = document.getElementById('costboard')
+
+    for (var counter = 0; counter < manaListCount; counter++) {
+      const currentMana = manaList[counter]
+
+      for (var looper = 0; looper < currentMana.qty; looper++) {
+        const newMana = manaTemplate.cloneNode(true)
+
+        newMana.classList.remove('nonvisible')
+
+        const tagText = newMana.getElementsByClassName('manatag')
+        tagText[0].textContent = currentMana.type
+
+        costBoard.appendChild(newMana, costBoard.childNodes[0])
+      }
+    }
+  }
 }
 
 const myForm = new Cardform()
