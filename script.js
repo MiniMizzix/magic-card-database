@@ -1,8 +1,7 @@
 Cardform = class {
 
   constructor() {
-
-    
+    this.CardData = new CardDatabase()
     
     document.getElementById('CMC').addEventListener('focusout', event => this.onFocusOut(event))
 
@@ -291,7 +290,7 @@ Cardform = class {
     }
   }
 
-  ManaTagsAutoFill() {
+  ManaTagsAutoFill () {
     const manaTemplate = document.getElementById('manatagtemplate')
     const manaList = this.CardData.CardStats.manacost
     const manaListCount = manaList.length
@@ -308,10 +307,32 @@ Cardform = class {
         const tagText = newMana.getElementsByClassName('manatag')
         tagText[0].textContent = currentMana.type
 
+        this.ManaDisplayInsert (currentMana.type)
+
         costBoard.appendChild(newMana, costBoard.childNodes[0])
+        newMana.addEventListener('click', event => this.onManaTagRemove_click(event, newMana))
       }
     }
   }
+
+  ManaDisplayInsert (manaColour) {
+    const displayBoard = document.getElementById('manadisplay')
+    const symbolNode = document.getElementById('displaysymbol')
+    if (manaColour !== 'generic') {
+      const newSymbol = symbolNode.cloneNode(true)
+
+      newSymbol.classList.remove('nonvisible')
+      newSymbol.classList.remove('hidden')
+      newSymbol.setAttribute('src', 'images/' + manaColour + '.png')
+
+      displayBoard.appendChild(newSymbol, displayBoard.childNodes[0])
+    } else {
+      const genericDisplay = document.getElementById('genericdisplay')
+      var genericCount = genericDisplay.textContent
+      genericCount = parseInt(genericCount) + 1
+      genericDisplay.textContent = genericCount
+    }
+  }  
 }
 
 const myForm = new Cardform()
