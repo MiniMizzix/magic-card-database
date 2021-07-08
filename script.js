@@ -21,8 +21,6 @@ Cardform = class {
       currentStar.addEventListener('click', event => this.onStarClick(event))
     }
 
-    console.log(this.TagSort)
-
     this.ManaTagsAutoFill()
     this.FormFill()
     this.Typelistfill()
@@ -76,6 +74,7 @@ Cardform = class {
     const manaDiv = newTag.getElementsByClassName('manatag')[0]
     const manaName = manaDiv.textContent
     this.ManaArray_IncrementQty(manaName)
+    this.ManaDisplayInsert (manaName)
 
     manaBoard.appendChild(newTag)
     newTag.addEventListener('click', event => this.onManaTagRemove_click(event, newTag))
@@ -86,6 +85,7 @@ Cardform = class {
     const manaDiv = manaTag.getElementsByClassName('manatag')[0]
     const manaName = manaDiv.textContent
     this.ManaArray_DecrementQty(manaName)
+    this.ManaDisplayDelete(manaName)
 
     manaBoard.removeChild(manaTag)
   }
@@ -252,12 +252,6 @@ Cardform = class {
 
     document.getElementById('cardtype').value =
       this.CardData.CardStats.type
-
-    document.getElementById('CMC').value = this.CardData.CardStats.CMC
-
-    document.getElementById('red').value = this.CardData.CardStats.red
-
-    document.getElementById('generic').value = this.CardData.CardStats.generic
   }
 
   ManaArray_IncrementQty(manaTag) {
@@ -323,6 +317,7 @@ Cardform = class {
 
       newSymbol.classList.remove('nonvisible')
       newSymbol.classList.remove('hidden')
+      newSymbol.classList.add(manaColour)
       newSymbol.setAttribute('src', 'images/' + manaColour + '.png')
 
       displayBoard.appendChild(newSymbol, displayBoard.childNodes[0])
@@ -332,7 +327,28 @@ Cardform = class {
       genericCount = parseInt(genericCount) + 1
       genericDisplay.textContent = genericCount
     }
-  }  
+  } 
+
+  ManaDisplayDelete (manaColour) {
+    const displayBoard = document.getElementById('manadisplay')
+    const allSymbols = document.getElementsByClassName('displaysymbol')
+    const allSymbolsCount = allSymbols.length
+    if (manaColour !== 'generic') {
+      for (var counter = 0; counter < allSymbolsCount; counter++) {
+        var currentSymbol = allSymbols[counter]
+        var symbolColour = currentSymbol.classList[1]
+        if (manaColour == symbolColour) {
+          displayBoard.removeChild(currentSymbol)
+          return
+        }
+      }
+    } else {
+      const genericDisplay = document.getElementById('genericdisplay')
+      var genericCount = genericDisplay.textContent
+      genericCount = parseInt(genericCount) - 1
+      genericDisplay.textContent = genericCount
+    }
+  }
 }
 
 const myForm = new Cardform()
