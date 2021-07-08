@@ -22,34 +22,6 @@
           <input class="valueinput" type="number" id="CMC" />
         </div>
 
-        <div class="manaweight">
-          real mana cost:
-
-          <div class="colourinputs">
-            <label for="colourless">C</label>
-            <input class="valueinput" type="number" id="colourless" />
-
-            <label for="white">W</label>
-            <input class="valueinput" type="number" id="white" />
-
-            <label for="blue">U</label>
-            <input class="valueinput" type="number" id="blue" />
-
-            <label for="black">B</label>
-            <input class="valueinput" type="number" id="black" />
-
-            <label for="red">R</label>
-            <input class="valueinput" type="number" id="red" />
-
-            <label for="green">G</label>
-            <input class="valueinput" type="number" id="green" />
-
-            <label for="generic">O</label>
-            <input class="valueinput" type="number" id="generic" />
-          </div>
-        </div>
-      </div>
-
       <div class="cardtypes">
         <label for="supertype">super type</label>
         <input class="typeinput" type="text" id="supertype" list="supertypedatalist" />
@@ -99,6 +71,8 @@
           </div>
       </div>
 
+      tags:
+
       <div class="cardtags">
         <div id="tagcatalog" class="tagcatalog">
         </div>
@@ -123,14 +97,22 @@
           <div class="tagname">hello</div>
           <img src="images/times-circle.svg" class="tagitemcross" />
         </div>
+
+        </br>
+
+      mana cost:
+      <div id="manadisplay" class="manadisplay">
+        <span class="genericdisplay" id="genericdisplay">0</span>
+      </div>
+      <img src="" id="displaysymbol" class="displaysymbol nonvisible hidden" />
       
       <div class="costinput">
         <div class="costboard" id="costboard">
-          <label for="costboard">mana tags:</label>
+          <label for="costboard">mana cost:</label>
         </div>
 
         <div id="manatagboard" class="manatagboard">
-          <label for="manatagboard">mana cost:</label>
+          <label for="manatagboard">mana tags:</label>
         </div>
 
         <div id="manatagtemplate" class="manasymbol nonvisible">
