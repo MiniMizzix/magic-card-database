@@ -19,12 +19,32 @@ CardDatabase = class {
   "image": "http://www.artofmtg.com/wp-content/uploads/2014/06/Shivan-Dragon-7th-Edition-Onward.jpg",
   "manacost": [
     {
-      "type": "red",
-      "qty": 2
+    "type": "colourless",
+    "qty": 0
     },
     {
-      "type": "generic",
-      "qty": 4
+    "type": "white",
+    "qty": 0
+    },
+    {
+    "type": "blue",
+    "qty": 0
+    },
+    {
+    "type": "black",
+    "qty": 0
+    },
+    {
+    "type": "red",
+    "qty": 2
+    },
+    {
+    "type": "green",
+    "qty": 0
+    },
+    {
+    "type": "generic",
+    "qty": 4
     }
   ],
   "rating": 3
@@ -44,6 +64,12 @@ CardDatabase = class {
     }
     this.ColourList = {
       "colours":["colourless","white","blue","black","red","green","generic"]
+    }
+    //its cooler because it changes when i add and take things from the tag boards
+    this.CoolerColourList = {
+      "bettercolours":[
+        
+      ]
     }
   }
 }

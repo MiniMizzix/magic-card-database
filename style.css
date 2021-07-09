@@ -23,13 +23,6 @@ input {
   margin: 0em 0em 1em 0em;
 }
 
-.colourinputs {
-  margin: 1em 0em 0em 0em;
-  display: grid;
-  grid-template-columns: 3em 3em;
-  grid-template-rows: repeat(7, 2em);
-}
-
 .cardtypes {
   margin: 1em 0em 0em 0em;
   display: grid;
@@ -149,6 +142,7 @@ input {
   border: outset 2px gray;
   display: inline-block;
   width: 4em;
+  cursor: pointer;
 }
 
 .costinput {
@@ -167,4 +161,20 @@ input {
   border: inset 2px lightgray;
   padding: 10px;
   width: 5em;
+}
+
+.displaysymbol {
+  height: 24px;
+  width: 24px;
+}
+
+.hidden {
+  height: 0px;
+  width: 0px;
+}
+
+.genericdisplay {
+  position: relative;
+  top: -5px;
+  font-size: 24px;
 }
