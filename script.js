@@ -73,8 +73,10 @@ Cardform = class {
     const manaBoard = document.getElementById('costboard')
     const manaDiv = newTag.getElementsByClassName('manatag')[0]
     const manaName = manaDiv.textContent
+    const fluxManaList = this.CardData.CoolerColourList.bettercolours
     this.ManaArray_IncrementQty(manaName)
     this.ManaDisplayInsert (manaName)
+    this.FluxManaSort_push (manaName)
 
     manaBoard.appendChild(newTag)
     newTag.addEventListener('click', event => this.onManaTagRemove_click(event, newTag))
@@ -86,8 +88,23 @@ Cardform = class {
     const manaName = manaDiv.textContent
     this.ManaArray_DecrementQty(manaName)
     this.ManaDisplayDelete(manaName)
+    this.FluxManaSort_pop(manaName)
 
     manaBoard.removeChild(manaTag)
+  }
+
+  FluxManaSort_push (manaTag) {
+    const fluxManaList = this.CardData.CoolerColourList.bettercolours
+    fluxManaList.push(manaTag)
+    fluxManaList.sort()
+    console.log(fluxManaList)
+  }
+
+  FluxManaSort_pop (manaTag) {
+    const fluxManaList = this.CardData.CoolerColourList.bettercolours
+    fluxManaList.pop(manaTag)
+    fluxManaList.sort()
+    console.log(fluxManaList)
   }
 
   AddButtonAutoFill() {
@@ -302,6 +319,7 @@ Cardform = class {
         tagText[0].textContent = currentMana.type
 
         this.ManaDisplayInsert (currentMana.type)
+        this.FluxManaSort_push (currentMana.type)
 
         costBoard.appendChild(newMana, costBoard.childNodes[0])
         newMana.addEventListener('click', event => this.onManaTagRemove_click(event, newMana))

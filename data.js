@@ -65,5 +65,11 @@ CardDatabase = class {
     this.ColourList = {
       "colours":["colourless","white","blue","black","red","green","generic"]
     }
+    //its cooler because it changes when i add and take things from the tag boards
+    this.CoolerColourList = {
+      "bettercolours":[
+        
+      ]
+    }
   }
 }
