@@ -75,8 +75,7 @@ Cardform = class {
     const manaName = manaDiv.textContent
     const fluxManaList = this.CardData.CoolerColourList.bettercolours
     this.ManaArray_IncrementQty(manaName)
-    this.ManaDisplayInsert (manaName)
-    this.FluxManaSort_push (manaName)
+    this.FluxManaSort_pushSecondary (manaName)
 
     manaBoard.appendChild(newTag)
     newTag.addEventListener('click', event => this.onManaTagRemove_click(event, newTag))
@@ -87,23 +86,48 @@ Cardform = class {
     const manaDiv = manaTag.getElementsByClassName('manatag')[0]
     const manaName = manaDiv.textContent
     this.ManaArray_DecrementQty(manaName)
-    this.ManaDisplayDelete(manaName)
     this.FluxManaSort_pop(manaName)
 
     manaBoard.removeChild(manaTag)
   }
 
-  FluxManaSort_push (manaTag) {
+  FluxManaSort_pushPrimary (manaTag) {
     const fluxManaList = this.CardData.CoolerColourList.bettercolours
     fluxManaList.push(manaTag)
     fluxManaList.sort()
     console.log(fluxManaList)
   }
 
+  FluxManaSort_pushSecondary (manaTag) {
+    const fluxManaList = this.CardData.CoolerColourList.bettercolours
+    fluxManaList.push(manaTag)
+    fluxManaList.sort()
+    this.DisplayWipe()
+    this.ManaDisplayFill()
+    console.log(fluxManaList)
+  }
+
+  DisplayWipe () {
+    const displayBoard = document.getElementById('manadisplay')
+    const displayNodes = displayBoard.getElementsByClassName('displaysymbol')
+    const genericValue = document.getElementById('genericdisplay')
+    genericValue.textContent = 0
+
+    const templateWipe = displayNodes.length
+    for (var counter = 0; counter < templateWipe; counter++) {
+      const markedForNegation = displayNodes[0]
+      displayBoard.removeChild(markedForNegation)
+    }
+  }
+
+  //no primary/secondary since only one function calls it
   FluxManaSort_pop (manaTag) {
     const fluxManaList = this.CardData.CoolerColourList.bettercolours
-    fluxManaList.pop(manaTag)
+    const froggy = fluxManaList.indexOf(manaTag)
+    fluxManaList.splice(froggy, 1)
     fluxManaList.sort()
+    this.DisplayWipe()
+    this.ManaDisplayFill()
     console.log(fluxManaList)
   }
 
@@ -307,6 +331,7 @@ Cardform = class {
     const manaListCount = manaList.length
     const costBoard = document.getElementById('costboard')
 
+
     for (var counter = 0; counter < manaListCount; counter++) {
       const currentMana = manaList[counter]
 
@@ -318,16 +343,17 @@ Cardform = class {
         const tagText = newMana.getElementsByClassName('manatag')
         tagText[0].textContent = currentMana.type
 
-        this.ManaDisplayInsert (currentMana.type)
-        this.FluxManaSort_push (currentMana.type)
-
         costBoard.appendChild(newMana, costBoard.childNodes[0])
         newMana.addEventListener('click', event => this.onManaTagRemove_click(event, newMana))
+        
+        this.FluxManaSort_pushPrimary (currentMana.type)
       }
     }
+
+    this.ManaDisplayFill ()
   }
 
-  ManaDisplayInsert (manaColour) {
+  /*ManaDisplayInsert (manaColour) {
     const displayBoard = document.getElementById('manadisplay')
     const symbolNode = document.getElementById('displaysymbol')
     if (manaColour !== 'generic') {
@@ -345,9 +371,35 @@ Cardform = class {
       genericCount = parseInt(genericCount) + 1
       genericDisplay.textContent = genericCount
     }
-  } 
+  } */
 
-  ManaDisplayDelete (manaColour) {
+  //fills when fluxManaList changes
+  ManaDisplayFill () {
+    const displayBoard = document.getElementById('manadisplay')
+    const symbolNode = document.getElementById('displaysymbol')
+    const fluxManaList = this.CardData.CoolerColourList.bettercolours
+    const fluxManaListCount = fluxManaList.length
+
+    for (var counter = 0; counter < fluxManaListCount; counter++) {
+      if (fluxManaList[counter] !== 'generic') {
+      const newSymbol = symbolNode.cloneNode(true)
+
+      newSymbol.classList.remove('nonvisible')
+      newSymbol.classList.remove('hidden')
+      newSymbol.classList.add(fluxManaList[counter])
+      newSymbol.setAttribute('src', 'images/' + fluxManaList[counter] + '.png')
+
+      displayBoard.appendChild(newSymbol, displayBoard.childNodes[0])
+    } else {
+      const genericDisplay = document.getElementById('genericdisplay')
+      var genericCount = genericDisplay.textContent
+      genericCount = parseInt(genericCount) + 1
+      genericDisplay.textContent = genericCount
+      }
+    }
+  }
+
+  /*ManaDisplayDelete (manaColour) {
     const displayBoard = document.getElementById('manadisplay')
     const allSymbols = document.getElementsByClassName('displaysymbol')
     const allSymbolsCount = allSymbols.length
@@ -366,7 +418,9 @@ Cardform = class {
       genericCount = parseInt(genericCount) - 1
       genericDisplay.textContent = genericCount
     }
-  }
+  }*/
+
+
 }
 
 const myForm = new Cardform()
